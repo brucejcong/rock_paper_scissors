@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Let's Play Rock Paper Scissors!</title>
+</head>
+<body>
+	<script>
+
+		function computerPlay() {
+			rng = Math.floor(Math.random()*3 + 1);
+			if (rng == 1) {
+				return "Rock";
+			} else if(rng == 2) {
+				return "Paper";
+			} else {
+				return "Scissors";
+			}
+		}
+
+		function capitalize(string) {
+			let firstLetter = string.charAt(0);
+			let everythingElse = string.slice(1);
+			return firstLetter.toUpperCase() + everythingElse.toLowerCase();
+		}
+
+		function playRound(playerSelection, computerSelection) {
+			playerSelection = capitalize(playerSelection);
+			computerSelection = capitalize(computerSelection);
+			const loseMessage = `You lose! ${computerSelection} beats ${playerSelection}`
+			const winMessage = `You win! ${playerSelection} beats ${computerSelection}`
+
+
+
+			if (playerSelection == computerSelection) {
+				return "The round is a tie!";
+			}
+			if (playerSelection == "Rock") {
+				if (computerSelection == "Scissors") {
+					return winMessage;
+				} else {
+					return loseMessage;
+				}
+			} else if (playerSelection == "Paper") {
+				if (computerSelection == "Rock") {
+					return winMessage;
+				} else {
+					return loseMessage;
+				} 
+			} else if (playerSelection == "Scissors"){
+				if (computerSelection == "Paper") {
+					return winMessage;
+				} else {
+					return loseMessage;
+				}
+			} else {
+				return "Error";
+			}
+		}
+
+		function game() {
+			let counter = 5;
+			let playerSelection;
+			while (counter > 0) {
+				playerSelection = prompt("Rock, Paper or Scissors?"); 
+			 	gameResult = playRound(playerSelection, computerPlay());
+				if (gameResult == "Error") {
+					console.log("Invalid selection. Please choose either rock, paper or scissors!");
+				} else {
+					console.log(gameResult);
+					counter -= 1;
+				}
+			}
+			console.log("Game is finished!");
+			
+		}
+
+
+
+		game();
+	</script>
+</body>
+</html>
