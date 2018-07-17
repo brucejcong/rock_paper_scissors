@@ -37,41 +37,58 @@
 			}
 			if (playerSelection == "Rock") {
 				if (computerSelection == "Scissors") {
-					return winMessage;
+					console.log(winMessage);
+					return 1;
 				} else {
-					return loseMessage;
+					console.log(loseMessage);
+					return 0;
 				}
 			} else if (playerSelection == "Paper") {
 				if (computerSelection == "Rock") {
-					return winMessage;
+					console.log(winMessage);
+					return 1;
 				} else {
-					return loseMessage;
+					console.log(loseMessage);
+					return 0;
 				} 
 			} else if (playerSelection == "Scissors"){
 				if (computerSelection == "Paper") {
-					return winMessage;
+					console.log(winMessage);
+					return 1;
 				} else {
-					return loseMessage;
+					console.log(loseMessage);
+					return 0;
 				}
 			} else {
-				return "Error";
+				console.log("Invalid selection. Please choose either rock, paper or scissors!");
+				return -1;
 			}
 		}
 
 		function game() {
 			let counter = 5;
 			let playerSelection;
+			let playerScore = 0;
+			let computerScore = 0;
 			while (counter > 0) {
 				playerSelection = prompt("Rock, Paper or Scissors?"); 
 			 	gameResult = playRound(playerSelection, computerPlay());
-				if (gameResult == "Error") {
-					console.log("Invalid selection. Please choose either rock, paper or scissors!");
-				} else {
-					console.log(gameResult);
+				if (gameResult == 1) {
+					playerScore += 1;
 					counter -= 1;
-				}
+				} else if (gameResult == 0) {
+					computerScore += 1;
+					counter -= 1;
+				} 
 			}
-			console.log("Game is finished!");
+			
+			if (playerScore > computerScore) {
+				console.log("Player wins the game with a score of " + playerScore + " !");
+			} else if (computerScore > playerScore) {
+				console.log("Computer wins the game with a score of " + computerScore + " !");
+			} else {
+				console.log("Tie game!")
+			}
 			
 		}
 
